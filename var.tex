@@ -413,6 +413,7 @@ $$
 \hrule
 
 \section{Парабола с насыщением и закреплёнными концами}
+
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=10cm,keepaspectratio]{pic1c}
@@ -446,17 +447,18 @@ $$
 		\left\{
 		\begin{aligned}
 			&\text{неравенства на границе},\\
-			&\ta = JL(J_1 - \frac{U}{4\pi\bar{e}})
+			&\ta^2 = J^2 L^2 \left(J_1 - \frac{U}{4\pi\bar{e}}\right)^2
 		\end{aligned}
 		\right.
 	\end{equation*}
-	\item Адекватность (корректное положение $\alpha$):
+	\item Корректность положения вершины параболы:
 	$$
 	\alpha\in[0,1]
 	$$
 \end{enumerate}
+\subsection{Нахождение решения}
 Для начала подставим искомую функцию~\eqref{eq:ch4_general} в геометрические условия~\eqref{eq:ch4_geometry}:
-$$
+\begin{equation}
 \left\{
 \begin{aligned}
 	&\frac{\tc}{4}(\alpha + \tb)^2 - \frac{\ta^2}{\tc} = -\vk^2,\\
@@ -464,52 +466,45 @@ $$
 	&\frac{\tc}{4}(1 + \tb)^2 - \frac{\ta^2}{\tc} = 1-\vk^2.
 \end{aligned}
 \right.
-$$
+\end{equation}
 В результате можно получить следующие сязи (предлагается всё выразить через $\tb$, а затем найти её через условие самосогласования):
 \begin{empheq}[left=\empheqlbrace]{align}
-	&\alpha = -b,\label{eq:ch4_alpha_and_b_connection}\\
-	&\frac{\ta^2}{\tc} = -\vk^2, \label{eq:ch4_a_and_c_connection}\\
-	&\tc = \frac{4}{(1+\tb)^2}.\label{eq:ch4_b_and_c_connection}
+	&\tb = -\alpha,\label{eq:ch4_alpha_and_b_connection}\\
+	&\tc = \frac{4}{(1-\alpha)^2},\label{eq:ch4_c_and_alpha_connection}\\
+	&\ta^2 = \frac{4\vk^2}{(1-\alpha)^2}.\label{eq:ch4_a_and_alpha_connection}
 \end{empheq}
-Заметим, что $\tc > 0$ -- это не озвучивалось, но также нужно для того, чтобы парабола располагалась корректно.
+Заметим, что $\tc > 0$ -- это также необходимо для того, чтобы парабола располагалась корректно.
+\hrule
 
-Для работы с условием самосогласования необходимо взять интегралы $J$ и $J_1$ (учтено, что $d\tz = Ldz$):
+Для работы с условием самосогласования необходимо взять интегралы $J$ и $J_1$:
 \begin{alignat}{2}
 	&J_1 &&= \frac{1}{\ve_a}\ln{\frac{y(0)}{y(1)}} = \ve_a^{-1} \ln{\left( \frac{\vk^2}{\vk^2-1} \right)}\label{eq:ch4_J1_straight}\\
-	&J^{-1} &&= \ve_a^{-1}L\int\limits_0^{1} \frac{d\tz}{y(\tz)} = \frac{L\tb}{\ve_a\vk^2} + \frac{L(1+\tb)}{2\ve_a\vk}\times \ln{\left| \frac{1-\vk}{1+\vk} \right|}\label{eq:ch4_J_straight}
+	&J^{-1} &&= \ve_a^{-1}L\int\limits_0^{1} \frac{d\tz}{y(\tz)} = \frac{L\tb}{\ve_a\vk^2} + \frac{L(1+\tb)}{2\ve_a\vk}\cdot \ln{\left( \frac{\vk-1}{\vk+1} \right)}\label{eq:ch4_J_straight}
 \end{alignat}
-Последний модуль можно раскрыть:
-$$
-J^{-1} = \frac{L\tb}{\ve_a\vk^2} + \frac{L(1+\tb)}{2\ve_a\vk}\times \ln{\left( \frac{\vk-1}{\vk+1} \right)}
-$$
-Далее воспользуемся тем, что $a < 0$ (так как в условии самосогласования выражение в скобке отрицательно, а интеграл $J$ положителен, поскольку представляет собой интеграл от $\EE(z)$ -- по сути, от диэлектрической проницаемости как функции координаты -- а она, в отличии от \textit{анизотропии} диэлектрической проницаемости, положительна). Это позволяет в выражении~\eqref{eq:ch4_a_and_c_connection} явно выразить $\ta$, не используя модуль:
-\begin{equation}\label{eq:ch4_ta_dependency_on_tb}
-	\ta = -\sqrt{\vk^2 \tc} = -\vk\sqrt{\tc} = -\frac{2\vk}{1+\tb}.	
-\end{equation}
-Условие самосогласования удобно представить в следующем виде:
-\begin{equation}\label{eq:ch4_self_consistency_ready2go}
-	\ta J^{-1}L^{-1} = J_1 - \frac{U}{4\pi\bar{e}}
-\end{equation}
-Подставляя в~\eqref{eq:ch4_self_consistency_ready2go} выражения для интегралов~\eqref{eq:ch4_J1_straight} и~\eqref{eq:ch4_J_straight}, учитывая вид $\ta$ из~\eqref{eq:ch4_ta_dependency_on_tb}, и умножив обе части уравнения на $\ve_a$, получаем следующий вид условия самосогласования:
-$$
--\frac{2\tb}{\vk(1+\tb)} + \ln{\left( \frac{\vk+1}{\vk-1}\right)} = \ln{\left( \frac{\vk^2}{\vk^2-1} \right)}- \frac{\ve_a U}{4\pi\bar{e}}
-$$
-Объединяя логарифмы и учитывая определение $\gamma$~\eqref{eq:appendix_gamma_definition}, получаем следующее равенство:
-$$
-\ln{\left( \frac{\vk+1}{\vk} \right)} = \frac{\tb}{\vk(1+\tb)} + \ln{\gamma}.
-$$
-В результате можно получить окончательное выражение для $\tb$:
+
+Снимая квадрат в условии самосогласования, получим
 \begin{equation}
-	\tb = \frac{1}{1-\vk\ln{\left( \frac{\vk+1}{\gamma\vk} \right)}} - 1.
+J_1 - \frac{U}{4\pi\bar{e}} = \frac{\pm \ta J^{-1}}{L}.\label{eq:ch4_self-consistency_final}
 \end{equation}
-С помощью связей~\eqref{eq:ch4_b_and_c_connection},~\eqref{eq:ch4_a_and_c_connection} и~\eqref{eq:ch4_alpha_and_b_connection} можно найти коэффициенты $\tc$, $\ta^2$ (для удобства записи функции $y(\tz)$ запишем именно в квадрате) и $\alpha$ соответственно:
+Отметим, что выражение слева отрицательно, а интеграл $J$ положителен.
+Таким образом, какой бы знак в выражении $\pm\ta$ мы ни выбрали, само это выражение должно быть отрицательно.
+Воспользовавшись связью~\eqref{eq:ch4_a_and_alpha_connection}, заменим
+$$
+\pm a \to \frac{-2\vk}{1-\alpha}.
+$$
+С учётом этого замечания, условие самосогласования~\eqref{eq:ch4_self-consistency_final} приводит нас к выражению для $\alpha$:
+\begin{equation}
+	\alpha = \frac{\vk\ln{\left(\frac{\gamma\vk}{\vk+1}\right)}}{1+\vk\ln{\left(\frac{\gamma\vk}{\vk+1}\right)}}.\label{eq:ch4_alpha_result}
+\end{equation} 
+
+С помощью связей~\eqref{eq:ch4_alpha_and_b_connection},~\eqref{eq:ch4_c_and_alpha_connection} и~\eqref{eq:ch4_a_and_alpha_connection} можно найти коэффициенты $\tc$, $\ta^2$ (для удобства записи функции $y(\tz)$ запишем именно в квадрате) и $\alpha$ соответственно:
 \begin{alignat}{2}
-	&\tc &&= 4\left(1-\vk\ln{\left(\frac{\vk+1}{\gamma\vk}\right)}\right)^2,\\
-	&\ta^2 &&= 4\vk^2\left(1-\vk\ln{\left(\frac{\vk+1}{\gamma\vk}\right)}\right)^2,\\
-	&\alpha &&= 1 - \frac{1}{1-\vk\ln{\left( \frac{\vk+1}{\gamma\vk} \right)}}.
+	&\tc &&= 4\left(1+\vk\ln{\left(\frac{\gamma\vk}{\vk+1}\right)}\right)^2,\\
+	&\alpha &&= \frac{\vk\ln{\left(\frac{\gamma\vk}{\vk+1}\right)}}{1+\vk\ln{\left(\frac{\gamma\vk}{\vk+1}\right)}},\\
+	&\ta^2 &&= \frac{4\vk^2}{(1-\alpha)^2}.	
 \end{alignat}
 Сама же функция $y(\tz)$ запишется так:
-\begin{equation}\label{eq:ch4_general}
+\begin{equation}\label{eq:ch4_general_2}
 	y(\tz) = \left\{
 	\begin{aligned}
 		&-\vk^2, &\tz\in [0,\alpha]\\
@@ -518,6 +513,8 @@ $$
 	\right.
 \end{equation}
 
+\subsection{Проверка положения вершины}
+\subsection{Проверка устойчивости на границах}
 
 
 \newpage
